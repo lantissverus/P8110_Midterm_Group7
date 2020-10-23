@@ -67,7 +67,7 @@ run;
 	ses_cat. 
 	Note: ses_cat is coded as 5 categories, not 4 per codebook.
 	Note: child_interview_age contains values outside the 
-	codebook provided range (6-23). [code as missing?] */
+	codebook provided range (6-23). */
 
 data midterm2;
 set midterm1;
@@ -81,9 +81,6 @@ set midterm1;
 	if ses_cat = 4 then ses_class = 2;
 	if ses_cat = 5 then ses_class = 1;
 	drop ses_cat;
-/*	*recode out of bounds child age;
-	if child_interview_age < 6 then child_interview_age = .;
-	if child_interview_age > 23 then child_interview_age = .; */
 	*code var for prepubertal depression onset;
 	prepubertal = 0;
 	if child_dep_age < 13 then prepubertal = 1;
@@ -131,8 +128,6 @@ set midterm2;
 		  prepubertal = "Child prepubertal depression onset";
 run;
 
-/* for defining survival time, do we want to subtract age of onset from age at interview?
-	or just leave it as age? ie what scale */
 
 
 
